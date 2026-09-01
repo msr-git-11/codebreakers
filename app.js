@@ -1330,6 +1330,193 @@ function renderLobby() {
 
 }
 
+function renderGameRoster() {
+
+  const roster =
+    $("gameRoster");
+
+  if (!roster) {
+    return;
+  }
+
+
+  const state =
+    room?.state || {};
+
+
+  const turn =
+    state.turn || "";
+
+
+  const redPlayers =
+    players.filter(
+      player =>
+        player.team === "red"
+    );
+
+
+  const bluePlayers =
+    players.filter(
+      player =>
+        player.team === "blue"
+    );
+
+
+  function playerHTML(
+    player,
+    team
+  ) {
+
+    const isMe =
+      player.user_id ===
+      sessionUser.id;
+
+
+    const isCurrent =
+      team === turn;
+
+
+    return `
+
+      <div
+        class="
+          rosterPlayer
+          ${isMe ? "me" : ""}
+          ${isCurrent ? "current" : ""}
+        "
+      >
+
+        <span
+          class="
+            rosterDot
+            ${team}
+          "
+        ></span>
+
+
+        <span class="rosterName">
+
+          ${esc(player.name)}
+
+          ${
+            isMe
+              ? " (YOU)"
+              : ""
+          }
+
+        </span>
+
+
+        <span class="rosterRole">
+
+          ${
+            player.role ===
+            "spymaster"
+
+              ? "SPYMASTER"
+
+              : "OPERATIVE"
+
+          }
+
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+  roster.innerHTML = `
+
+    <div
+      class="teamRoster redTeam"
+    >
+
+      <div
+        class="teamTitle red"
+      >
+
+        RED TEAM
+
+      </div>
+
+
+      ${
+        redPlayers.length
+
+          ? redPlayers
+              .map(
+                player =>
+                  playerHTML(
+                    player,
+                    "red"
+                  )
+              )
+              .join("")
+
+          : `
+            <div
+              style="
+                color:#657492;
+                font-size:10px;
+                padding:5px;
+              "
+            >
+              No players
+            </div>
+          `
+      }
+
+    </div>
+
+
+    <div
+      class="teamRoster blueTeam"
+    >
+
+      <div
+        class="teamTitle blue"
+      >
+
+        BLUE TEAM
+
+      </div>
+
+
+      ${
+        bluePlayers.length
+
+          ? bluePlayers
+              .map(
+                player =>
+                  playerHTML(
+                    player,
+                    "blue"
+                  )
+              )
+              .join("")
+
+          : `
+            <div
+              style="
+                color:#657492;
+                font-size:10px;
+                padding:5px;
+              "
+            >
+              No players
+            </div>
+          `
+      }
+
+    </div>
+
+  `;
+
+}
+
 
 /* =========================================================
    GAME RENDER
@@ -1415,6 +1602,10 @@ function renderGame() {
     state
   );
 
+  renderPhaseBanner();
+
+  renderGameRoster();
+
 
   renderBoard(
     state,
@@ -1460,6 +1651,183 @@ function renderGame() {
     stopGuessTimer();
 
   }
+
+}
+
+function renderPhaseBanner() {
+
+  const banner =
+    $("phaseBanner");
+
+  if (!banner) {
+    return;
+  }
+
+
+  const state =
+    room?.state || {};
+
+
+  const phase =
+    state.phase || "";
+
+
+  const turn =
+    state.turn || "";
+
+
+  const turnName =
+    turn.toUpperCase();
+
+
+  banner.className =
+    "phaseBanner";
+
+
+  if (turn === "red") {
+
+    banner.classList.add(
+      "redTurn"
+    );
+
+  }
+
+  if (turn === "blue") {
+
+    banner.classList.add(
+      "blueTurn"
+    );
+
+  }
+
+
+  let main =
+    "WAITING";
+
+
+  let sub =
+    "";
+
+
+  let mine =
+    "";
+
+
+  if (
+    phase === "clue"
+  ) {
+
+    main =
+      `${turnName} TEAM — CLUE PHASE`;
+
+
+    const isMyTurn =
+      me.team === turn &&
+      me.role ===
+        "spymaster";
+
+
+    if (isMyTurn) {
+
+      sub =
+        "Give a one-word clue to your operatives.";
+
+      mine =
+        "YOUR TURN";
+
+    } else {
+
+      sub =
+        `${turnName} Spymaster is preparing the clue.`;
+
+    }
+
+  }
+
+
+  else if (
+    phase === "guessing"
+  ) {
+
+    main =
+      `${turnName} TEAM — GUESSING`;
+
+
+    const isMyTurn =
+      me.team === turn &&
+      me.role ===
+        "operative";
+
+
+    if (isMyTurn) {
+
+      sub =
+        "Choose a word from the board.";
+
+      mine =
+        "YOUR TURN TO GUESS";
+
+    } else {
+
+      sub =
+        `${turnName} operatives are choosing a word.`;
+
+    }
+
+  }
+
+
+  else if (
+    phase === "finished"
+  ) {
+
+    main =
+      `${
+        (
+          state.winner ||
+          ""
+        ).toUpperCase()
+      } TEAM WINS`;
+
+
+    sub =
+      `Game ${
+        state.gameNumber ||
+        1
+      } has ended.`;
+
+  }
+
+
+  banner.innerHTML = `
+
+    <div class="phaseMain">
+
+      ${esc(main)}
+
+    </div>
+
+
+    <div class="phaseSub">
+
+      ${esc(sub)}
+
+    </div>
+
+
+    ${
+      mine
+
+        ? `
+          <div class="phaseMine">
+            ${esc(mine)}
+          </div>
+        `
+
+        : ""
+    }
+
+  `;
 
 }
 
