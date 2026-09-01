@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
 <title>CODEBREAKERS — Multiplayer</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
 
+<script src="config.js"></script>
 
 <style>
 
@@ -25,11 +33,11 @@
   --blue:#35d8e8;
   --green:#29b98a;
   --purple:#c45cff;
-  --line:#263552
+  --line:#263552;
 }
 
 *{
-  box-sizing:border-box
+  box-sizing:border-box;
 }
 
 body{
@@ -43,7 +51,7 @@ body{
     #050812;
   color:var(--ink);
   font-family:Inter,system-ui,sans-serif;
-  min-height:100vh
+  min-height:100vh;
 }
 
 body:before{
@@ -62,14 +70,14 @@ body:before{
       rgba(255,255,255,.025) 1px,
       transparent 1px
     );
-  background-size:36px 36px
+  background-size:36px 36px;
 }
 
 .wrap{
   max-width:900px;
   margin:auto;
   padding:24px 16px 50px;
-  position:relative
+  position:relative;
 }
 
 header{
@@ -78,13 +86,13 @@ header{
   align-items:end;
   border-bottom:1px solid var(--line);
   padding-bottom:14px;
-  margin-bottom:18px
+  margin-bottom:18px;
 }
 
 h1{
   font:800 25px Orbitron;
   margin:0;
-  letter-spacing:3px
+  letter-spacing:3px;
 }
 
 .sub{
@@ -92,14 +100,14 @@ h1{
   color:#71809e;
   letter-spacing:2px;
   margin-top:6px;
-  text-transform:uppercase
+  text-transform:uppercase;
 }
 
 .badges{
   display:flex;
   gap:6px;
   flex-wrap:wrap;
-  justify-content:flex-end
+  justify-content:flex-end;
 }
 
 .badge,
@@ -110,7 +118,7 @@ h1{
   font:700 8px Orbitron;
   color:#aebddd;
   background:#0a1120;
-  letter-spacing:1px
+  letter-spacing:1px;
 }
 
 .card,
@@ -125,7 +133,7 @@ h1{
   border-radius:16px;
   padding:18px;
   margin-bottom:14px;
-  box-shadow:0 14px 35px rgba(0,0,0,.25)
+  box-shadow:0 14px 35px rgba(0,0,0,.25);
 }
 
 .eyebrow{
@@ -133,7 +141,7 @@ h1{
   color:var(--cyan);
   letter-spacing:2px;
   text-transform:uppercase;
-  margin-bottom:10px
+  margin-bottom:10px;
 }
 
 label{
@@ -142,7 +150,7 @@ label{
   color:#7483a1;
   letter-spacing:1px;
   text-transform:uppercase;
-  margin:12px 0 5px
+  margin:12px 0 5px;
 }
 
 input{
@@ -153,12 +161,12 @@ input{
   border:1px solid #2a3957;
   border-radius:9px;
   font:14px Inter;
-  outline:none
+  outline:none;
 }
 
 input:focus{
   border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(73,231,255,.08)
+  box-shadow:0 0 0 3px rgba(73,231,255,.08);
 }
 
 .btn{
@@ -176,53 +184,53 @@ input:focus{
   font:800 10px Orbitron;
   letter-spacing:1px;
   text-transform:uppercase;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .btn.secondary{
   background:rgba(255,255,255,.025);
   color:#9eafd0;
-  border:1px solid #344565
+  border:1px solid #344565;
 }
 
 .btn:disabled{
   opacity:.35;
-  cursor:not-allowed
+  cursor:not-allowed;
 }
 
 .big{
   width:100%;
-  padding:15px
+  padding:15px;
 }
 
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:12px
+  margin-top:12px;
 }
 
 .err{
   color:#ff6f90;
   font-size:11px;
   margin-top:8px;
-  min-height:16px
+  min-height:16px;
 }
 
 .hidden{
-  display:none!important
+  display:none!important;
 }
 
 .roomHero{
   text-align:center;
-  padding:22px
+  padding:22px;
 }
 
 .roomCode{
   font:800 38px Orbitron;
   color:var(--cyan);
   letter-spacing:7px;
-  margin:8px 0
+  margin:8px 0;
 }
 
 .player{
@@ -231,7 +239,7 @@ input:focus{
   gap:9px;
   padding:10px 4px;
   border-bottom:1px solid rgba(48,65,95,.55);
-  font-size:13px
+  font-size:13px;
 }
 
 .dot{
@@ -239,19 +247,19 @@ input:focus{
   height:7px;
   background:var(--green);
   border-radius:50%;
-  box-shadow:0 0 10px rgba(41,185,138,.5)
+  box-shadow:0 0 10px rgba(41,185,138,.5);
 }
 
 .host{
   margin-left:auto;
   font:700 8px Orbitron;
-  color:#7382a0
+  color:#7382a0;
 }
 
 .scoreboard{
   display:flex;
   gap:10px;
-  margin-bottom:12px
+  margin-bottom:12px;
 }
 
 .score{
@@ -260,31 +268,31 @@ input:focus{
   padding:12px;
   border:1px solid var(--line);
   border-radius:15px;
-  background:#0c1526
+  background:#0c1526;
 }
 
 .score.active{
   box-shadow:
     0 0 0 1px var(--cyan) inset,
-    0 0 22px rgba(73,231,255,.1)
+    0 0 22px rgba(73,231,255,.1);
 }
 
 .score.red.active{
   box-shadow:
     0 0 0 1px var(--red) inset,
-    0 0 22px rgba(255,71,117,.14)
+    0 0 22px rgba(255,71,117,.14);
 }
 
 .score .n{
-  font:800 30px Orbitron
+  font:800 30px Orbitron;
 }
 
 .score.red .n{
-  color:#ff5d86
+  color:#ff5d86;
 }
 
 .score.blue .n{
-  color:var(--blue)
+  color:var(--blue);
 }
 
 .score .lbl{
@@ -292,7 +300,7 @@ input:focus{
   color:#71809e;
   letter-spacing:1px;
   text-transform:uppercase;
-  margin-top:5px
+  margin-top:5px;
 }
 
 
@@ -308,12 +316,12 @@ input:focus{
   border:1px solid #33486d;
   border-radius:18px;
   background:rgba(4,8,16,.78);
-  margin-bottom:14px
+  margin-bottom:14px;
 }
 
 
 /*
-  BRIGHTER CELLS + BIGGER WORDS
+   BRIGHTER CELLS + BIGGER WORDS
 */
 
 .cell{
@@ -358,13 +366,12 @@ input:focus{
     inset 0 1px 0 rgba(255,255,255,.07),
     0 3px 8px rgba(0,0,0,.25);
 
-  transition:
-    .15s ease
+  transition:.15s ease;
 }
 
 .cell span{
   position:relative;
-  z-index:2
+  z-index:2;
 }
 
 .cell:before{
@@ -379,7 +386,7 @@ input:focus{
       transparent 42%
     );
 
-  pointer-events:none
+  pointer-events:none;
 }
 
 .cell:hover:not(:disabled){
@@ -389,15 +396,15 @@ input:focus{
 
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.1),
-    0 5px 14px rgba(0,0,0,.35)
+    0 5px 14px rgba(0,0,0,.35);
 }
 
 .cell:disabled{
-  cursor:default
+  cursor:default;
 }
 
 .cell.dimmed{
-  opacity:.55
+  opacity:.55;
 }
 
 
@@ -415,7 +422,7 @@ input:focus{
 
   box-shadow:
     inset 0 0 0 2px var(--red),
-    0 0 16px rgba(255,71,117,.28)
+    0 0 16px rgba(255,71,117,.28);
 }
 
 
@@ -433,7 +440,7 @@ input:focus{
 
   box-shadow:
     inset 0 0 0 2px var(--blue),
-    0 0 16px rgba(53,216,232,.3)
+    0 0 16px rgba(53,216,232,.3);
 }
 
 
@@ -451,7 +458,7 @@ input:focus{
 
   box-shadow:
     inset 0 0 0 2px var(--green),
-    0 0 14px rgba(41,185,138,.22)
+    0 0 14px rgba(41,185,138,.22);
 }
 
 
@@ -470,7 +477,7 @@ input:focus{
 
   box-shadow:
     inset 0 0 0 2px var(--purple),
-    0 0 20px rgba(196,92,255,.38)
+    0 0 20px rgba(196,92,255,.38);
 }
 
 
@@ -494,7 +501,7 @@ input:focus{
 
   z-index:1;
 
-  pointer-events:none
+  pointer-events:none;
 }
 
 
@@ -506,7 +513,7 @@ input:focus{
   border:3px solid #000;
 
   text-shadow:
-    0 1px 3px rgba(0,0,0,.7)
+    0 1px 3px rgba(0,0,0,.7);
 }
 
 .cell.revealed.red{
@@ -518,7 +525,7 @@ input:focus{
     );
 
   box-shadow:
-    0 0 12px rgba(255,71,117,.18)
+    0 0 12px rgba(255,71,117,.18);
 }
 
 .cell.revealed.blue{
@@ -530,7 +537,7 @@ input:focus{
     );
 
   box-shadow:
-    0 0 12px rgba(53,216,232,.18)
+    0 0 12px rgba(53,216,232,.18);
 }
 
 .cell.revealed.neutral{
@@ -542,7 +549,7 @@ input:focus{
     );
 
   box-shadow:
-    0 0 12px rgba(41,185,138,.18)
+    0 0 12px rgba(41,185,138,.18);
 }
 
 
@@ -556,7 +563,7 @@ input:focus{
   line-height:1;
   min-width:82px;
   text-align:center;
-  transition:.2s
+  transition:.2s;
 }
 
 #guessTimer.danger{
@@ -566,19 +573,19 @@ input:focus{
     0 0 14px rgba(255,71,117,.45);
 
   animation:
-    timerPulse .6s infinite alternate
+    timerPulse .6s infinite alternate;
 }
 
 @keyframes timerPulse{
 
   from{
     transform:scale(1);
-    opacity:.8
+    opacity:.8;
   }
 
   to{
     transform:scale(1.08);
-    opacity:1
+    opacity:1;
   }
 
 }
@@ -595,11 +602,11 @@ input:focus{
     90px
     90px
     130px;
-  gap:9px
+  gap:9px;
 }
 
 .grid4 .btn{
-  height:43px
+  height:43px;
 }
 
 .waiting{
@@ -608,34 +615,34 @@ input:focus{
   align-items:center;
   justify-content:center;
   color:#91a0bc;
-  font-size:12px
+  font-size:12px;
 }
 
 .waiting b{
   color:var(--cyan);
   font-family:Orbitron;
-  font-size:10px
+  font-size:10px;
 }
 
 .clue{
   display:flex;
   align-items:center;
-  gap:12px
+  gap:12px;
 }
 
 .clue strong{
   font:800 22px Orbitron;
   color:var(--cyan);
-  letter-spacing:2px
+  letter-spacing:2px;
 }
 
 .clue span{
   font-size:10px;
-  color:#8290ad
+  color:#8290ad;
 }
 
 .clue .btn{
-  margin-left:auto
+  margin-left:auto;
 }
 
 
@@ -648,7 +655,7 @@ input:focus{
   padding:20px;
   border-radius:14px;
   font:800 20px Orbitron;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
 
 .win.red{
@@ -657,7 +664,7 @@ input:focus{
       135deg,
       #ff527c,
       #c32950
-    )
+    );
 }
 
 .win.blue{
@@ -666,14 +673,14 @@ input:focus{
       135deg,
       #629eff,
       #386bd7
-    )
+    );
 }
 
 .smallcenter{
   text-align:center;
   color:#71809e;
   font-size:10px;
-  margin:8px 0 12px
+  margin:8px 0 12px;
 }
 
 
@@ -687,11 +694,11 @@ input:focus{
   color:#657492;
   font-size:10px;
   border-top:1px solid var(--line);
-  padding-top:8px
+  padding-top:8px;
 }
 
 .log div{
-  padding:2px 0
+  padding:2px 0;
 }
 
 
@@ -727,14 +734,14 @@ input:focus{
 
   max-width:90%;
 
-  text-align:center
+  text-align:center;
 }
 
 #toast.show{
   opacity:1;
 
   transform:
-    translate(-50%,0)
+    translate(-50%,0);
 }
 
 
@@ -745,74 +752,75 @@ input:focus{
 @media(max-width:600px){
 
   .wrap{
-    padding:18px 10px 35px
+    padding:18px 10px 35px;
   }
 
   header{
     align-items:start;
-    gap:8px
+    gap:8px;
   }
 
   .badges{
-    max-width:45%
+    max-width:45%;
   }
 
   h1{
-    font-size:20px
+    font-size:20px;
   }
 
   .actions{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .board{
     gap:5px;
-    padding:5px
+    padding:5px;
   }
 
 
   /*
-    MOBILE:
-    Bigger words while keeping
-    the 5x5 board compact.
+     MOBILE:
+     Bigger words while keeping
+     the 5x5 board compact.
   */
 
   .cell{
     min-height:62px;
     font-size:11px;
-    padding:4px
+    padding:4px;
   }
 
   .grid4{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
   }
 
   .grid4 input:first-child{
-    grid-column:1/-1
+    grid-column:1/-1;
   }
 
   .grid4 .btn{
-    grid-column:1/-1
+    grid-column:1/-1;
   }
 
   .clue{
-    flex-wrap:wrap
+    flex-wrap:wrap;
   }
 
   .clue .btn{
     margin-left:0;
-    width:100%
+    width:100%;
   }
 
   .roomCode{
-    font-size:31px
+    font-size:31px;
   }
 
   #guessTimer{
-    font-size:26px
+    font-size:26px;
   }
 
 }
+
 
 /* =========================================================
    LIVE PLAYER ROSTER
@@ -984,6 +992,7 @@ input:focus{
 }
 
 </style>
+
 </head>
 
 
@@ -1233,6 +1242,7 @@ input:focus{
   id="game"
   class="hidden"
 >
+
 
 <!-- =====================================================
      LIVE TURN / PHASE
@@ -1263,87 +1273,88 @@ input:focus{
 
 </div>
 
-  <div id="win">
-  </div>
+
+<div id="win">
+</div>
 
 
-  <div class="scoreboard">
+<div class="scoreboard">
+
+  <div
+    class="score red"
+    id="redBox">
 
     <div
-      class="score red"
-      id="redBox">
+      class="n"
+      id="redCount">
 
-      <div
-        class="n"
-        id="redCount">
-
-        -
-
-      </div>
-
-
-      <div class="lbl">
-        Red Remaining
-      </div>
+      -
 
     </div>
 
 
-    <div
-      class="score blue"
-      id="blueBox">
-
-      <div
-        class="n"
-        id="blueCount">
-
-        -
-
-      </div>
-
-
-      <div class="lbl">
-        Blue Remaining
-      </div>
-
+    <div class="lbl">
+      Red Remaining
     </div>
 
   </div>
 
 
   <div
-    class="card"
-    style="padding:9px"
-  >
+    class="score blue"
+    id="blueBox">
 
     <div
-      class="board"
-      id="board">
+      class="n"
+      id="blueCount">
+
+      -
+
+    </div>
+
+
+    <div class="lbl">
+      Blue Remaining
     </div>
 
   </div>
 
+</div>
 
-  <div id="controls">
+
+<div
+  class="card"
+  style="padding:9px"
+>
+
+  <div
+    class="board"
+    id="board">
   </div>
 
-
-  <div class="card">
-
-    <div class="eyebrow">
-      EVENT LOG
-    </div>
+</div>
 
 
-    <div
-      class="log"
-      id="log">
-    </div>
+<div id="controls">
+</div>
 
+
+<div class="card">
+
+  <div class="eyebrow">
+    EVENT LOG
   </div>
 
 
   <div
+    class="log"
+    id="log">
+  </div>
+
+</div>
+
+
+<div
   style="
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -1370,1196 +1381,6 @@ input:focus{
 
 </div>
 
-</section>
-
-
-</div>
-
-
-<div id="toast">
-</div>
-
-
-<!-- =====================================================
-     APP
-====================================================== -->
-
-<script src="app.js?v=4"></script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-
-<title>CODEBREAKERS — Multiplayer</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
-
-<style>
-
-:root{
-  --bg:#050812;
-  --bg2:#0a1020;
-  --ink:#edf3ff;
-  --cyan:#49e7ff;
-  --red:#ff4775;
-  --blue:#35d8e8;
-  --green:#29b98a;
-  --purple:#c45cff;
-  --line:#263552
-}
-
-*{
-  box-sizing:border-box
-}
-
-body{
-  margin:0;
-  background:
-    radial-gradient(
-      circle at 50% -15%,
-      rgba(67,231,255,.12),
-      transparent 45%
-    ),
-    #050812;
-  color:var(--ink);
-  font-family:Inter,system-ui,sans-serif;
-  min-height:100vh
-}
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.18;
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    );
-  background-size:36px 36px
-}
-
-.wrap{
-  max-width:900px;
-  margin:auto;
-  padding:24px 16px 50px;
-  position:relative
-}
-
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  border-bottom:1px solid var(--line);
-  padding-bottom:14px;
-  margin-bottom:18px
-}
-
-h1{
-  font:800 25px Orbitron;
-  margin:0;
-  letter-spacing:3px
-}
-
-.sub{
-  font-size:9px;
-  color:#71809e;
-  letter-spacing:2px;
-  margin-top:6px;
-  text-transform:uppercase
-}
-
-.badges{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-  justify-content:flex-end
-}
-
-.badge,
-.pill{
-  border:1px solid #334361;
-  border-radius:999px;
-  padding:6px 9px;
-  font:700 8px Orbitron;
-  color:#aebddd;
-  background:#0a1120;
-  letter-spacing:1px
-}
-
-.card,
-.panel{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(14,22,39,.97),
-      rgba(8,13,25,.97)
-    );
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:14px;
-  box-shadow:0 14px 35px rgba(0,0,0,.25)
-}
-
-.eyebrow{
-  font:700 10px Orbitron;
-  color:var(--cyan);
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:10px
-}
-
-label{
-  display:block;
-  font-size:10px;
-  color:#7483a1;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  margin:12px 0 5px
-}
-
-input{
-  width:100%;
-  padding:12px;
-  background:#070c17;
-  color:#edf4ff;
-  border:1px solid #2a3957;
-  border-radius:9px;
-  font:14px Inter;
-  outline:none
-}
-
-input:focus{
-  border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(73,231,255,.08)
-}
-
-.btn{
-  display:inline-block;
-  padding:12px 17px;
-  background:
-    linear-gradient(
-      135deg,
-      #52efff,
-      #3aa9ff
-    );
-  color:#041019;
-  border:0;
-  border-radius:10px;
-  font:800 10px Orbitron;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  cursor:pointer
-}
-
-.btn.secondary{
-  background:rgba(255,255,255,.025);
-  color:#9eafd0;
-  border:1px solid #344565
-}
-
-.btn:disabled{
-  opacity:.35;
-  cursor:not-allowed
-}
-
-.big{
-  width:100%;
-  padding:15px
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px
-}
-
-.err{
-  color:#ff6f90;
-  font-size:11px;
-  margin-top:8px;
-  min-height:16px
-}
-
-.hidden{
-  display:none!important
-}
-
-.roomHero{
-  text-align:center;
-  padding:22px
-}
-
-.roomCode{
-  font:800 38px Orbitron;
-  color:var(--cyan);
-  letter-spacing:7px;
-  margin:8px 0
-}
-
-.player{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  padding:10px 4px;
-  border-bottom:1px solid rgba(48,65,95,.55);
-  font-size:13px
-}
-
-.dot{
-  width:7px;
-  height:7px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 10px rgba(41,185,138,.5)
-}
-
-.host{
-  margin-left:auto;
-  font:700 8px Orbitron;
-  color:#7382a0
-}
-
-.scoreboard{
-  display:flex;
-  gap:10px;
-  margin-bottom:12px
-}
-
-.score{
-  flex:1;
-  text-align:center;
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:#0c1526
-}
-
-.score.active{
-  box-shadow:
-    0 0 0 1px var(--cyan) inset,
-    0 0 22px rgba(73,231,255,.1)
-}
-
-.score.red.active{
-  box-shadow:
-    0 0 0 1px var(--red) inset,
-    0 0 22px rgba(255,71,117,.14)
-}
-
-.score .n{
-  font:800 30px Orbitron
-}
-
-.score.red .n{
-  color:#ff5d86
-}
-
-.score.blue .n{
-  color:var(--blue)
-}
-
-.score .lbl{
-  font-size:8px;
-  color:#71809e;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  margin-top:5px
-}
-
-
-/* =========================================================
-   GAME BOARD
-========================================================= */
-
-.board{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  padding:7px;
-  border:1px solid #33486d;
-  border-radius:18px;
-  background:rgba(4,8,16,.78);
-  margin-bottom:14px
-}
-
-
-/*
-  BRIGHTER CELLS + BIGGER WORDS
-*/
-
-.cell{
-  position:relative;
-
-  min-height:78px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #243653,
-      #16243b
-    );
-
-  color:#f4f8ff;
-
-  border-radius:11px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font:800 15px Inter;
-
-  text-align:center;
-  text-transform:uppercase;
-
-  padding:5px;
-
-  border:1px solid #496183;
-
-  line-height:1.15;
-
-  cursor:pointer;
-
-  overflow:hidden;
-
-  text-shadow:
-    0 1px 3px rgba(0,0,0,.65);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 3px 8px rgba(0,0,0,.25);
-
-  transition:
-    .15s ease
-}
-
-.cell span{
-  position:relative;
-  z-index:2
-}
-
-.cell:before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.09),
-      transparent 42%
-    );
-
-  pointer-events:none
-}
-
-.cell:hover:not(:disabled){
-  transform:translateY(-1px);
-
-  filter:brightness(1.12);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.1),
-    0 5px 14px rgba(0,0,0,.35)
-}
-
-.cell:disabled{
-  cursor:default
-}
-
-.cell.dimmed{
-  opacity:.55
-}
-
-
-/* RED SPYMASTER VIEW */
-
-.cell.spy-red{
-  background:
-    linear-gradient(
-      145deg,
-      #4b1b2d,
-      #26101d
-    );
-
-  border-color:#ff4775;
-
-  box-shadow:
-    inset 0 0 0 2px var(--red),
-    0 0 16px rgba(255,71,117,.28)
-}
-
-
-/* BLUE SPYMASTER VIEW */
-
-.cell.spy-blue{
-  background:
-    linear-gradient(
-      145deg,
-      #124b59,
-      #0a2932
-    );
-
-  border-color:#35d8e8;
-
-  box-shadow:
-    inset 0 0 0 2px var(--blue),
-    0 0 16px rgba(53,216,232,.3)
-}
-
-
-/* NEUTRAL SPYMASTER VIEW */
-
-.cell.spy-neutral{
-  background:
-    linear-gradient(
-      145deg,
-      #124637,
-      #09271f
-    );
-
-  border-color:#29b98a;
-
-  box-shadow:
-    inset 0 0 0 2px var(--green),
-    0 0 14px rgba(41,185,138,.22)
-}
-
-
-/* ASSASSIN */
-
-.cell.spy-assassin,
-.cell.revealed.assassin{
-  background:
-    linear-gradient(
-      145deg,
-      #24102f,
-      #100719
-    );
-
-  border-color:var(--purple);
-
-  box-shadow:
-    inset 0 0 0 2px var(--purple),
-    0 0 20px rgba(196,92,255,.38)
-}
-
-
-/* SKULL */
-
-.cell.bomb:after{
-  content:"☠";
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%)
-    scaleX(1.35);
-
-  font:95px Arial;
-
-  color:rgba(196,92,255,.2);
-
-  z-index:1;
-
-  pointer-events:none
-}
-
-
-/* REVEALED CARDS */
-
-.cell.revealed{
-  color:#fff;
-
-  border:3px solid #000;
-
-  text-shadow:
-    0 1px 3px rgba(0,0,0,.7)
-}
-
-.cell.revealed.red{
-  background:
-    linear-gradient(
-      145deg,
-      #f70743,
-      #5a2432
-    );
-
-  box-shadow:
-    0 0 12px rgba(255,71,117,.18)
-}
-
-.cell.revealed.blue{
-  background:
-    linear-gradient(
-      145deg,
-      #045dec,
-      #245066
-    );
-
-  box-shadow:
-    0 0 12px rgba(53,216,232,.18)
-}
-
-.cell.revealed.neutral{
-  background:
-    linear-gradient(
-      145deg,
-      #03f35f,
-      #24543e
-    );
-
-  box-shadow:
-    0 0 12px rgba(41,185,138,.18)
-}
-
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-#guessTimer{
-  font:900 30px Orbitron;
-  color:var(--ink);
-  line-height:1;
-  min-width:82px;
-  text-align:center;
-  transition:.2s
-}
-
-#guessTimer.danger{
-  color:var(--red);
-
-  text-shadow:
-    0 0 14px rgba(255,71,117,.45);
-
-  animation:
-    timerPulse .6s infinite alternate
-}
-
-@keyframes timerPulse{
-
-  from{
-    transform:scale(1);
-    opacity:.8
-  }
-
-  to{
-    transform:scale(1.08);
-    opacity:1
-  }
-
-}
-
-
-/* =========================================================
-   CLUE / WAITING
-========================================================= */
-
-.grid4{
-  display:grid;
-  grid-template-columns:
-    minmax(0,2fr)
-    90px
-    90px
-    130px;
-  gap:9px
-}
-
-.grid4 .btn{
-  height:43px
-}
-
-.waiting{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  justify-content:center;
-  color:#91a0bc;
-  font-size:12px
-}
-
-.waiting b{
-  color:var(--cyan);
-  font-family:Orbitron;
-  font-size:10px
-}
-
-.clue{
-  display:flex;
-  align-items:center;
-  gap:12px
-}
-
-.clue strong{
-  font:800 22px Orbitron;
-  color:var(--cyan);
-  letter-spacing:2px
-}
-
-.clue span{
-  font-size:10px;
-  color:#8290ad
-}
-
-.clue .btn{
-  margin-left:auto
-}
-
-
-/* =========================================================
-   WIN
-========================================================= */
-
-.win{
-  text-align:center;
-  padding:20px;
-  border-radius:14px;
-  font:800 20px Orbitron;
-  margin-bottom:8px
-}
-
-.win.red{
-  background:
-    linear-gradient(
-      135deg,
-      #ff527c,
-      #c32950
-    )
-}
-
-.win.blue{
-  background:
-    linear-gradient(
-      135deg,
-      #629eff,
-      #386bd7
-    )
-}
-
-.smallcenter{
-  text-align:center;
-  color:#71809e;
-  font-size:10px;
-  margin:8px 0 12px
-}
-
-
-/* =========================================================
-   EVENT LOG
-========================================================= */
-
-.log{
-  max-height:130px;
-  overflow:auto;
-  color:#657492;
-  font-size:10px;
-  border-top:1px solid var(--line);
-  padding-top:8px
-}
-
-.log div{
-  padding:2px 0
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-#toast{
-  position:fixed;
-  left:50%;
-  bottom:20px;
-
-  transform:
-    translate(-50%,20px);
-
-  opacity:0;
-
-  background:#111a2d;
-
-  border:1px solid #3a4d70;
-
-  color:#eaf4ff;
-
-  padding:11px 15px;
-
-  border-radius:10px;
-
-  font-size:11px;
-
-  z-index:99;
-
-  transition:.2s;
-
-  max-width:90%;
-
-  text-align:center
-}
-
-#toast.show{
-  opacity:1;
-
-  transform:
-    translate(-50%,0)
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-  .wrap{
-    padding:18px 10px 35px
-  }
-
-  header{
-    align-items:start;
-    gap:8px
-  }
-
-  .badges{
-    max-width:45%
-  }
-
-  h1{
-    font-size:20px
-  }
-
-  .actions{
-    grid-template-columns:1fr
-  }
-
-  .board{
-    gap:5px;
-    padding:5px
-  }
-
-
-  /*
-    MOBILE:
-    Bigger words while keeping
-    the 5x5 board compact.
-  */
-
-  .cell{
-    min-height:62px;
-    font-size:11px;
-    padding:4px
-  }
-
-  .grid4{
-    grid-template-columns:1fr 1fr
-  }
-
-  .grid4 input:first-child{
-    grid-column:1/-1
-  }
-
-  .grid4 .btn{
-    grid-column:1/-1
-  }
-
-  .clue{
-    flex-wrap:wrap
-  }
-
-  .clue .btn{
-    margin-left:0;
-    width:100%
-  }
-
-  .roomCode{
-    font-size:31px
-  }
-
-  #guessTimer{
-    font-size:26px
-  }
-
-}
-
-</style>
-</head>
-
-
-<body>
-
-<div class="wrap">
-
-
-<!-- =====================================================
-     HEADER
-====================================================== -->
-
-<header>
-
-  <div>
-
-    <h1>
-      CODEBREAKERS
-    </h1>
-
-    <div class="sub">
-      ONLINE MULTIPLAYER • REALTIME
-    </div>
-
-  </div>
-
-
-  <div class="badges">
-
-    <span
-      class="badge"
-      id="phaseBadge">
-
-      OFFLINE
-
-    </span>
-
-
-    <span
-      class="badge"
-      id="roomBadge">
-    </span>
-
-
-    <span
-      class="badge"
-      id="myBadge">
-    </span>
-
-  </div>
-
-</header>
-
-
-<!-- =====================================================
-     HOME
-====================================================== -->
-
-<section id="home">
-
-  <div class="card">
-
-    <div class="eyebrow">
-      PLAYER ID
-    </div>
-
-
-    <label>
-      Your name
-    </label>
-
-
-    <input
-      id="homeName"
-      maxlength="16"
-      placeholder="Agent name"
-    >
-
-
-    <div class="actions">
-
-
-      <button
-        class="btn big"
-        id="createBtn">
-
-        CREATE GAME
-
-      </button>
-
-
-      <div>
-
-        <input
-          id="joinCode"
-          maxlength="5"
-          placeholder="ROOM CODE"
-          style="
-            text-transform:uppercase;
-            margin-bottom:10px
-          "
-        >
-
-
-        <button
-          class="btn secondary big"
-          id="joinBtn">
-
-          JOIN GAME
-
-        </button>
-
-      </div>
-
-
-    </div>
-
-
-    <div
-      class="err"
-      id="homeErr">
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="eyebrow">
-      MULTIPLAYER MODE
-    </div>
-
-
-    <div
-      style="
-        font-size:12px;
-        color:#8a99b5;
-        line-height:1.7
-      "
-    >
-
-      Create one room and share the
-      5-character code. Every player uses
-      their own phone.
-
-      The game state is stored online and
-      synchronized in real time.
-
-      No laptop server is required.
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     LOBBY
-====================================================== -->
-
-<section
-  id="lobby"
-  class="hidden"
->
-
-
-  <div class="card roomHero">
-
-    <div class="eyebrow">
-      ROOM CODE
-    </div>
-
-
-    <div
-      class="roomCode"
-      id="roomCodeLabel">
-
-      -----
-
-    </div>
-
-
-    <button
-      class="btn secondary"
-      id="copyRoomBtn">
-
-      COPY ROOM CODE
-
-    </button>
-
-
-    <div
-      id="lobbyStatus"
-      class="smallcenter">
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="eyebrow">
-      AGENTS
-    </div>
-
-
-    <div
-      id="playerList">
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div
-      id="myIdentity"
-      class="pill">
-    </div>
-
-
-    <div
-      id="hostHint"
-      class="smallcenter">
-    </div>
-
-
-    <button
-      class="btn big hidden"
-      id="startBtn">
-
-      ASSIGN TEAMS & START
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     GAME
-====================================================== -->
-
-<section
-  id="game"
-  class="hidden"
->
-
-
-  <div id="win">
-  </div>
-
-
-  <div class="scoreboard">
-
-    <div
-      class="score red"
-      id="redBox">
-
-      <div
-        class="n"
-        id="redCount">
-
-        -
-
-      </div>
-
-
-      <div class="lbl">
-        Red Remaining
-      </div>
-
-    </div>
-
-
-    <div
-      class="score blue"
-      id="blueBox">
-
-      <div
-        class="n"
-        id="blueCount">
-
-        -
-
-      </div>
-
-
-      <div class="lbl">
-        Blue Remaining
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div
-    class="card"
-    style="padding:9px"
-  >
-
-    <div
-      class="board"
-      id="board">
-    </div>
-
-  </div>
-
-
-  <div id="controls">
-  </div>
-
-
-  <div class="card">
-
-    <div class="eyebrow">
-      EVENT LOG
-    </div>
-
-
-    <div
-      class="log"
-      id="log">
-    </div>
-
-  </div>
-
-
-  <div
-  style="
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  "
->
-
-  <button
-    class="btn secondary big"
-    id="leaveBtn">
-
-    LEAVE ROOM
-
-  </button>
-
-
-  <button
-    class="btn secondary big hidden"
-    id="newGameBtn">
-
-    NEW GAME
-
-  </button>
-
-</div>
 
 </section>
 
